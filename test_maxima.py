@@ -9,7 +9,7 @@ y = y.ravel()
 
 y[5] = y[5] + 10
 
-exp = [10,5]
+exp = [5]
 
 test_cases = [(y,exp)]
 @pytest.mark.parametrize("inp,exp",test_cases)    
