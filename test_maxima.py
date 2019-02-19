@@ -1,25 +1,15 @@
 import numpy as np
-
+import pytest
 from maxima import find_maxima
-
-def test_simple_sequence_two_maxima():
-    inp = [0, 1, 2, 1, 2, 1, 0]
-    out = find_maxima(inp)
-    exp = [2, 4]
-    assert exp == out
-
-def test_simple_sequence_one_maximum():
-    inp = [-i**2 for i in range(-3, 4)]
-    out = find_maxima(inp)
-    exp = [3]
-    assert exp == out
-
-def test_sine_wave():
-    inp = [np.sin(2*alpha) for alpha in np.linspace(0.0, 5.0, 100)]
-    out = find_maxima(inp)
-    exp = [16,78]
-    assert exp == out
-
+    
+test_cases = [([0, 1, 2, 1, 2, 1, 0],[2,4]),
+              ([-i**2 for i in range(-3, 4)],[3]),
+              ([np.sin(2*alpha) for alpha in np.linspace(0.0, 5.0, 100)],[16,78])]
+@pytest.mark.parametrize("inp,exp",test_cases)    
+def  test_all(inp,exp):
+        out=find_maxima(inp)
+        assert exp == out
+    
 # additional tests for
 # - max on both borders
 #   x = [4, 2, 1, 3, 1, 2]
